@@ -6,62 +6,56 @@
 <title>ClipForge — Long videos to ready-to-post Shorts</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Bebas+Neue&family=Bricolage+Grotesque:wght@600;800&family=Instrument+Sans:wght@400;500;600&display=swap">
 <style>
-:root{--bg:#eef0ec;--ink:#13171d;--mut:#5d6672;--line:#d6dad3;--card:#fff;--blue:#2447f5;--lime:#d4f55a;--red:#c8312b;--ok:#13803f}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 'Instrument Sans',system-ui,sans-serif}
-button,input,select,textarea{font:inherit;color:inherit}
-button{cursor:pointer;border:0;border-radius:10px;padding:10px 16px;font-weight:600;background:var(--ink);color:#fff}
-button:hover{opacity:.88}button:disabled{opacity:.4;cursor:not-allowed}
-button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
-button.go{background:var(--blue)}button.sm{padding:6px 11px;font-size:13px}
+:root{--bg:#f3f4f0;--ink:#14181f;--mut:#626b77;--line:#dcdfd8;--card:#fff;--blue:#2447f5;--lime:#d4f55a;--red:#c8312b;--ok:#13803f}
+*{box-sizing:border-box;min-width:0}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 'Instrument Sans',system-ui,sans-serif;overflow-x:hidden}
+button,input,select,textarea,a.btn{font:inherit;color:inherit}
+button,a.btn{cursor:pointer;border:0;border-radius:12px;padding:11px 18px;font-weight:600;background:var(--ink);color:#fff;text-decoration:none;display:inline-block;text-align:center}
+button:hover,a.btn:hover{opacity:.88}button:disabled{opacity:.4;cursor:not-allowed}
+.ghost{background:transparent!important;color:var(--ink)!important;border:1px solid var(--line)}
+.go{background:var(--blue)!important;color:#fff!important}.sm{padding:6px 12px;font-size:13px}
 :focus-visible{outline:3px solid var(--blue);outline-offset:2px}
-header{padding:16px clamp(16px,4vw,48px);border-bottom:1px solid var(--line);background:var(--card)}
+header{padding:16px clamp(16px,4vw,48px);background:var(--card);border-bottom:1px solid var(--line)}
 .brand{font:800 22px 'Bricolage Grotesque';letter-spacing:-.5px;display:flex;align-items:center;gap:10px}
-.brand i{width:30px;height:30px;border-radius:9px;background:var(--lime);display:grid;place-items:center;font-style:normal;font-size:16px;border:2px solid var(--ink)}
-main{max-width:1180px;margin:0 auto;padding:36px 20px 60px}
-h1{font:800 clamp(32px,5vw,54px)/1.02 'Bricolage Grotesque';letter-spacing:-1.5px;margin:0 0 12px;max-width:760px}
-.lead{color:var(--mut);max-width:620px;margin:0 0 30px;font-size:17px}
-h2{font:700 20px 'Bricolage Grotesque';margin:0 0 4px}
-.sub{color:var(--mut);margin:0 0 16px;font-size:14px}
-.grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,1fr);gap:20px;align-items:start}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
-.sec{margin-top:20px}
-.drop{border:2px dashed #aeb5ab;border-radius:14px;padding:30px 20px;text-align:center;background:#f7f8f5}
+.brand i{width:30px;height:30px;border-radius:9px;background:var(--lime);display:grid;place-items:center;font-style:normal;border:2px solid var(--ink)}
+main{max-width:1120px;margin:0 auto;padding:40px 18px 70px}
+h1{font:800 clamp(32px,5.4vw,56px)/1.02 'Bricolage Grotesque';letter-spacing:-1.8px;margin:0 0 14px;max-width:780px}
+.lead{color:var(--mut);max-width:620px;margin:0 0 34px;font-size:17px}
+h2{font:700 22px 'Bricolage Grotesque';margin:0 0 4px;display:flex;align-items:center;gap:10px}
+h2 b{width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--lime);display:grid;place-items:center;font-size:14px}
+.sub{color:var(--mut);margin:0 0 18px;font-size:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:clamp(18px,3vw,28px);box-shadow:0 1px 2px #0001,0 12px 30px -18px #0003;margin-bottom:22px}
+.drop{border:2px dashed #b5bbb0;border-radius:16px;padding:34px 20px;text-align:center;background:#f8f9f6}
 .drop.drag{border-color:var(--blue);background:#eef1ff}
-.drop strong{display:block;font:700 18px 'Bricolage Grotesque'}
-.fileline{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:12px;padding:10px 12px;background:#f2f4ef;border-radius:10px}
+.drop strong{display:block;font:700 19px 'Bricolage Grotesque'}
+.fileline{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:14px;padding:12px 14px;background:#f2f4ef;border-radius:12px}
 .fileline b{overflow-wrap:anywhere}
-.controls{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
-label.f{display:block;font-size:13px;color:var(--mut);font-weight:500;margin-top:10px}
-.controls label.f{margin:0}
-select,input[type=text],textarea{width:100%;margin-top:5px;padding:9px 10px;border:1px solid var(--line);border-radius:9px;background:#fff}
-textarea{resize:vertical;min-height:84px}
-.chk{display:flex;gap:9px;align-items:center;margin-top:14px;font-size:14px}
-.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-.msg{margin-top:14px;padding:11px 13px;border-radius:10px;background:#f2f4ef;font-size:13.5px}
+.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}
+label.f{display:block;font-size:13px;color:var(--mut);font-weight:500}
+select,input[type=text],textarea{width:100%;margin-top:5px;padding:10px 11px;border:1px solid var(--line);border-radius:10px;background:#fff}
+textarea{resize:vertical;min-height:90px}
+.chk{display:flex;gap:9px;align-items:center;margin-top:16px}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.msg{margin-top:16px;padding:12px 14px;border-radius:12px;background:#f2f4ef;font-size:14px;overflow-wrap:anywhere}
 .msg.err{background:#fde8e6;color:var(--red)}.msg.ok{background:#e4f6ea;color:var(--ok)}
-.bar{height:6px;background:#e3e6df;border-radius:9px;overflow:hidden;margin-top:10px}.bar i{display:block;height:100%;width:0;background:var(--blue);transition:width .2s}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
-.stats div{background:#f2f4ef;border-radius:10px;padding:10px}.stats b{display:block;font:800 20px 'Bricolage Grotesque'}.stats span{font-size:12px;color:var(--mut)}
-.eng{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-size:13.5px}
-.eng small{display:block;color:var(--mut)}
-.tip{font-size:13px;color:var(--mut);margin-top:12px}
-.moment{border-top:1px solid var(--line);padding:16px 0}
-.moment:first-child{border-top:0}
-.clip{display:flex;justify-content:space-between;gap:12px;align-items:center}
-.clip h3{margin:0;font-size:16px}.clip p{margin:2px 0 0;color:var(--mut);font-size:13px}
+.bar{height:7px;background:#e3e6df;border-radius:9px;overflow:hidden;margin-top:10px}.bar i{display:block;height:100%;width:0;background:var(--blue);transition:width .2s}
+.tip{font-size:13px;color:var(--mut);margin:14px 0 0}
+.moment{border-top:1px solid var(--line);padding:18px 0}.moment:first-child{border-top:0;padding-top:0}
+.clip{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.clip h3{margin:0;font-size:17px}.clip p{margin:2px 0 0;color:var(--mut);font-size:13px}
 .btns{display:flex;gap:8px;flex-wrap:wrap}
-.out{margin-top:16px;display:none;gap:22px;flex-wrap:wrap;background:#f7f8f5;border:1px solid var(--line);border-radius:14px;padding:16px}
+.out{margin-top:18px;display:none;gap:24px;flex-wrap:wrap;background:#f6f7f3;border:1px solid var(--line);border-radius:16px;padding:18px}
 .out.show{display:flex}
-.out video{width:240px;max-width:100%;aspect-ratio:9/16;background:#000;border-radius:12px;display:block}
-.out .fields{flex:1;min-width:260px}
-.out .lab{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:13px;color:var(--mut);font-weight:500}
-.out .lab+input,.out .lab+textarea{margin-top:4px}
-dialog{border:0;border-radius:16px;padding:20px;max-width:min(94vw,560px);width:100%}
+.out video{width:250px;max-width:100%;aspect-ratio:9/16;background:#000;border-radius:14px;display:block}
+.fields{flex:1 1 280px}
+.lab{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:13px;color:var(--mut);font-weight:500}
+.lab+input,.lab+textarea{margin-top:5px}
+.info{font-size:13px;color:var(--mut);margin-top:8px}
+dialog{border:0;border-radius:18px;padding:20px;width:min(94vw,520px)}
 dialog::backdrop{background:#000a}
-dialog video{width:100%;max-height:70vh;background:#000;border-radius:10px}
-@media(max-width:860px){.grid{grid-template-columns:1fr}}
-@media(max-width:520px){.controls{grid-template-columns:1fr}.clip{flex-direction:column;align-items:flex-start}.out video{width:100%;max-height:60vh}}
+dialog video{width:100%;max-height:70vh;background:#000;border-radius:12px}
+@media(max-width:520px){.out video{width:100%;max-height:65vh}.btns button,.btns a{flex:1}}
 @media(prefers-reduced-motion:reduce){.bar i{transition:none}}
 </style>
 </head>
@@ -69,63 +63,56 @@ dialog video{width:100%;max-height:70vh;background:#000;border-radius:10px}
 <header><div class="brand"><i>✂</i>ClipForge</div></header>
 <main>
 <h1>Turn any long video into ready-to-post Shorts.</h1>
-<p class="lead">Podcasts, lectures, vlogs, interviews, gameplay, events. Drop in a video and get vertical clips with captions, plus a title, description and hashtags to copy.</p>
+<p class="lead">Podcasts, lectures, vlogs, interviews, gameplay, events. Get short vertical clips with captions, plus a title, description and hashtags to copy and post.</p>
 
-<div class="grid">
 <section class="card">
- <h2>Your video</h2>
- <p class="sub">Works with any MP4, MOV or WebM. Everything stays on your device.</p>
+ <h2><b>1</b>Add your video</h2>
+ <p class="sub">Any MP4, MOV or WebM. Everything stays on your device.</p>
  <div class="drop" id="drop">
   <strong>Drop a video here</strong>
-  <p class="sub" style="margin:4px 0 12px">or pick a file from your device</p>
+  <p class="sub" style="margin:4px 0 14px">or pick a file from your device</p>
   <input id="file" type="file" accept="video/*" hidden>
   <button id="choose" class="ghost">Choose video</button>
  </div>
- <div id="fileInfo" class="fileline" hidden><div><b id="fileName"></b><br><span class="sub" id="fileMeta" style="margin:0"></span></div><button id="clear" class="ghost">Remove</button></div>
+ <div id="fileInfo" class="fileline" hidden><div><b id="fileName"></b><br><span class="sub" id="fileMeta" style="margin:0"></span></div><button id="clear" class="ghost sm">Remove</button></div>
  <div class="controls">
-  <label class="f">Clip length<select id="duration"><option value="30">About 30 seconds</option><option value="45" selected>About 45 seconds</option><option value="58">Just under 60 seconds</option></select></label>
+  <label class="f">Clip length<select id="duration"><option value="20">About 20 seconds</option><option value="30">About 30 seconds</option><option value="45" selected>About 45 seconds</option><option value="58">Just under 60 seconds</option></select></label>
   <label class="f">Number of clips<select id="count"><option>3</option><option selected>5</option><option>8</option><option>10</option></select></label>
-  <label class="f">Vertical layout<select id="format"><option value="blur" selected>Full video on blurred background</option><option value="crop">Center crop (fills screen)</option></select></label>
+  <label class="f">Layout<select id="format"><option value="blur" selected>Full video on blurred background</option><option value="crop">Center crop (fills screen)</option></select></label>
   <label class="f">Caption style<select id="caption"><option value="anton" selected>Anton: bold</option><option value="bebas">Bebas Neue: clean</option><option value="archivo">Archivo Black: heavy</option></select></label>
+  <label class="f">Quality<select id="quality"><option value="720" selected>720p (fast, smooth)</option><option value="1080">1080p (sharper, slower PCs may lag)</option></select></label>
  </div>
- <label class="chk"><input type="checkbox" id="captions" checked> Add English captions to the video</label>
+ <label class="chk"><input type="checkbox" id="captions" checked> Add English captions with highlighted words</label>
  <div class="row"><button id="scan" class="go" disabled>Find best moments</button><button id="stop" class="ghost" disabled>Stop</button></div>
  <div class="msg" id="status" role="status" aria-live="polite">Choose a video to begin.</div>
  <div class="bar"><i id="progress"></i></div>
- <p class="tip">Moments are picked from audio energy: strong speech, laughter, applause or music peaks. Always preview a clip before posting.</p>
+ <p class="tip">Moments are picked from audio energy such as strong speech, laughter or applause. Best for videos under about 45 minutes. <span id="aiState">Caption AI loads on your first export.</span></p>
 </section>
 
-<aside class="card">
- <h2>Your video at a glance</h2>
- <p class="sub">No installs. The video is made right in your browser.</p>
- <div class="stats"><div><b id="durationStat">—</b><span>Length</span></div><div><b id="sizeStat">—</b><span>Size</span></div><div><b id="clipStat">0</b><span>Moments</span></div></div>
- <div class="eng"><div>Caption AI<small id="aiState">Loads automatically on first export</small></div><button id="loadAI" class="ghost sm">Load now</button></div>
- <p class="tip"><b>How exporting works:</b> the Short is recorded in real time, so a 45 second clip takes about 45 seconds. Keep this tab open and visible while it records. Use Chrome or Edge for MP4 output; other browsers may give WebM, which also uploads fine.</p>
-</aside>
-</div>
-
-<section class="card sec"><h2>Best moments</h2><p class="sub">Preview the original footage, then export. Your finished Short appears right under the moment.</p><div id="results"><p class="sub">Your moments will appear here.</p></div></section>
+<section class="card">
+ <h2><b>2</b>Pick and export your Shorts</h2>
+ <p class="sub">Preview the original footage, then export. Each Short is exactly the clip length shown, and appears right under its moment.</p>
+ <div id="results"><p class="sub">Your moments will appear here.</p></div>
+</section>
 </main>
 
 <dialog id="pv"><video id="pvVid" controls playsinline></video><div class="row"><button id="pvClose" class="ghost">Close</button></div></dialog>
 
 <script type="module">
 const $ = id => document.getElementById(id);
-const MAX_BYTES = 2 * 1024 ** 3;
-let file = null, videoUrl = null, videoDuration = 0, transcriber = null, aiReady = false, aiLoading = null;
-let audioBuf = null, cancel = false, busy = false, clips = [];
+const MAX_BYTES = 2 * 1024 ** 3, SR = 16000;
+let file = null, videoUrl = null, videoDuration = 0, audioBuf = null, cancel = false, busy = false, clips = [];
+let worker = null, aiReady = false, aiPromise = null, pending = new Map(), reqId = 0;
 const transcripts = new Map();
 
 const setMsg = (el, s, cls = '') => { el.textContent = s; el.className = 'msg ' + cls; };
 const status = (s, p, cls = '') => { setMsg($('status'), s, cls); if (p !== undefined) $('progress').style.width = Math.max(0, Math.min(100, p)) + '%'; };
 const fmt = t => { t = Math.max(0, Math.floor(t)); return String(Math.floor(t / 60)).padStart(2, '0') + ':' + String(t % 60).padStart(2, '0'); };
 const size = n => n < 1048576 ? (n / 1024).toFixed(1) + ' KB' : n < 1073741824 ? (n / 1048576).toFixed(1) + ' MB' : (n / 1073741824).toFixed(2) + ' GB';
+const tick = () => new Promise(r => setTimeout(r, 0));
 
 /* ---------- File ---------- */
-function resetSession() {
-  clips = []; transcripts.clear(); audioBuf = null;
-  $('clipStat').textContent = '0'; $('results').innerHTML = '<p class="sub">Your moments will appear here.</p>';
-}
+function resetSession() { clips = []; transcripts.clear(); audioBuf = null; $('results').innerHTML = '<p class="sub">Your moments will appear here.</p>'; }
 function setFile(f) {
   if (!f) return;
   if (!f.type.startsWith('video/')) return status('Please choose a video file.', 0, 'err');
@@ -133,77 +120,86 @@ function setFile(f) {
   resetSession(); file = f;
   if (videoUrl) URL.revokeObjectURL(videoUrl);
   videoUrl = URL.createObjectURL(f);
-  $('fileName').textContent = f.name; $('fileMeta').textContent = size(f.size);
-  $('fileInfo').hidden = false; $('scan').disabled = false;
+  $('fileName').textContent = f.name; $('fileInfo').hidden = false; $('scan').disabled = false;
   const v = document.createElement('video'); v.preload = 'metadata'; v.src = videoUrl;
-  v.onloadedmetadata = () => { videoDuration = v.duration; $('durationStat').textContent = fmt(videoDuration); $('sizeStat').textContent = size(f.size); status('Video ready. Click “Find best moments”.', 0); };
+  v.onloadedmetadata = () => { videoDuration = v.duration; $('fileMeta').textContent = size(f.size) + ' · ' + fmt(videoDuration); status(videoDuration > 3000 ? 'This is a long video. Scanning may take a while and use a lot of memory.' : 'Video ready. Click “Find best moments”.', 0); };
   v.onerror = () => status('Could not read this video. Try MP4 (H.264/AAC).', 0, 'err');
 }
 $('choose').onclick = () => $('file').click();
 $('file').onchange = e => setFile(e.target.files[0]);
-$('clear').onclick = () => { resetSession(); file = null; if (videoUrl) URL.revokeObjectURL(videoUrl); videoUrl = null; $('file').value = ''; $('fileInfo').hidden = true; $('scan').disabled = true; $('durationStat').textContent = $('sizeStat').textContent = '—'; status('Choose a video to begin.', 0); };
+$('clear').onclick = () => { resetSession(); file = null; if (videoUrl) URL.revokeObjectURL(videoUrl); videoUrl = null; $('file').value = ''; $('fileInfo').hidden = true; $('scan').disabled = true; status('Choose a video to begin.', 0); };
 const drop = $('drop');
 ['dragenter', 'dragover'].forEach(e => drop.addEventListener(e, x => { x.preventDefault(); drop.classList.add('drag'); }));
 ['dragleave', 'drop'].forEach(e => drop.addEventListener(e, x => { x.preventDefault(); drop.classList.remove('drag'); }));
 drop.addEventListener('drop', e => setFile(e.dataTransfer.files[0]));
 
-/* ---------- Caption AI (only needed for captions and titles) ---------- */
+/* ---------- Caption AI runs in a Web Worker so the page never freezes ---------- */
+const WORKER = `
+import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.2';
+env.allowLocalModels = false; let asr;
+onmessage = async e => { const m = e.data;
+  try {
+    if (m.type === 'load') { asr = await pipeline('automatic-speech-recognition', 'Xenova/whisper-tiny.en', { dtype: 'q8', progress_callback: p => { if (p.status === 'progress' && p.total) postMessage({ type: 'prog', p: Math.round(p.progress) }); } }); postMessage({ type: 'ready' }); }
+    else { const out = await asr(m.samples, { sampling_rate: 16000, return_timestamps: 'word', chunk_length_s: 30, stride_length_s: 5 }); postMessage({ type: 'done', id: m.id, chunks: out.chunks || [] }); }
+  } catch (err) { postMessage({ type: 'error', id: m.id, message: String(err && err.message || err) }); }
+};`;
 function loadAI() {
   if (aiReady) return Promise.resolve();
-  if (aiLoading) return aiLoading;
-  $('loadAI').disabled = true; $('aiState').textContent = 'Downloading…';
-  aiLoading = (async () => {
-    try {
-      const { pipeline, env } = await import('https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.2');
-      env.allowLocalModels = false;
-      transcriber = await pipeline('automatic-speech-recognition', 'Xenova/whisper-tiny.en', { dtype: 'q8', progress_callback: p => { if (p.status === 'progress' && p.total) $('aiState').textContent = 'Downloading… ' + Math.round(p.progress) + '%'; } });
-      aiReady = true; $('aiState').textContent = 'Ready ✓'; $('loadAI').textContent = 'Ready';
-    } catch (e) {
-      console.error(e); aiLoading = null; $('loadAI').disabled = false; $('aiState').textContent = 'Failed to load. Check your internet.';
-      throw new Error('Caption AI could not load. Check your internet, or turn captions off.');
-    }
-  })();
-  return aiLoading;
+  if (aiPromise) return aiPromise;
+  aiPromise = new Promise((ok, no) => {
+    try { worker = new Worker(URL.createObjectURL(new Blob([WORKER], { type: 'text/javascript' })), { type: 'module' }); }
+    catch { aiPromise = null; return no(new Error('This browser cannot run the caption AI. Use a recent Chrome or Edge, or turn captions off.')); }
+    worker.onerror = () => { aiPromise = null; no(new Error('Caption AI could not start. Check your internet, or turn captions off.')); };
+    worker.onmessage = ({ data: d }) => {
+      if (d.type === 'prog') $('aiState').textContent = 'Downloading caption AI… ' + d.p + '%';
+      else if (d.type === 'ready') { aiReady = true; $('aiState').textContent = 'Caption AI ready ✓'; ok(); }
+      else if (d.type === 'done') pending.get(d.id)?.ok(d.chunks);
+      else if (d.type === 'error') { if (d.id != null) pending.get(d.id)?.no(new Error(d.message)); else { aiPromise = null; no(new Error('Caption AI failed to load. Check your internet, or turn captions off.')); } }
+    };
+    $('aiState').textContent = 'Downloading caption AI…'; worker.postMessage({ type: 'load' });
+  });
+  return aiPromise;
 }
-$('loadAI').onclick = () => loadAI().catch(() => {});
+const transcribe = samples => new Promise((ok, no) => { const id = ++reqId; pending.set(id, { ok, no }); worker.postMessage({ type: 'run', id, samples }, [samples.buffer]); });
 
-/* ---------- Audio + moments ---------- */
+/* ---------- Audio + moments (decoded once at 16 kHz to save memory) ---------- */
 async function decodeAudio() {
   if (audioBuf) return audioBuf;
-  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+  const ctx = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: SR });
   try { audioBuf = await ctx.decodeAudioData(await file.arrayBuffer()); }
-  catch { throw new Error('Could not decode audio. Try an MP4 with AAC audio.'); }
+  catch { throw new Error('Could not read the audio. Try an MP4 with AAC audio, or a shorter video.'); }
   finally { ctx.close(); }
   return audioBuf;
 }
-function analyzeAudio(buf) {
-  const d = buf.getChannelData(0), ws = Math.floor(buf.sampleRate * .5), vals = [];
-  for (let i = 0; i < d.length; i += ws) { let s = 0; const n = Math.min(ws, d.length - i); for (let j = 0; j < n; j++) s += d[i + j] * d[i + j]; vals.push(Math.sqrt(s / Math.max(1, n))); }
-  const sorted = [...vals].sort((a, b) => a - b), th = Math.max(.02, sorted[Math.floor(sorted.length * .7)] || .02);
+async function analyzeAudio(buf) {
+  const d = buf.getChannelData(0), ws = SR / 2, vals = [];
+  for (let i = 0, k = 0; i < d.length; i += ws, k++) {
+    let s = 0; const n = Math.min(ws, d.length - i); for (let j = 0; j < n; j++) s += d[i + j] * d[i + j];
+    vals.push(Math.sqrt(s / Math.max(1, n))); if (k % 3000 === 0) await tick();
+  }
+  const sorted = [...vals].sort((a, b) => a - b), th = Math.max(.01, sorted[Math.floor(sorted.length * .7)] || .01);
   return vals.map((v, i) => ({ time: i * .5, score: v / th })).filter(x => x.score >= 1);
 }
 $('scan').onclick = async () => {
   if (!file || busy) return;
   cancel = false; busy = true; $('scan').disabled = true; $('stop').disabled = false; clips = []; transcripts.clear();
   try {
-    status('Reading audio…', 8);
-    const audio = await decodeAudio();
-    if (cancel) throw new Error('Scan stopped.');
-    status('Ranking moments…', 50);
-    const len = Number($('duration').value), max = Number($('count').value), cands = [];
-    analyzeAudio(audio).forEach(p => {
-      const end = Math.min(videoDuration, Math.max(0, p.time - len * .55) + len), start = Math.max(0, end - len);
-      if (end - start < Math.min(15, len * .6)) return;
+    status('Reading audio… this can take a moment for long videos.', 10); await tick();
+    const audio = await decodeAudio(); if (cancel) throw new Error('Scan stopped.');
+    status('Ranking moments…', 55);
+    const len = Number($('duration').value), max = Number($('count').value), cands = [], total = videoDuration || audio.duration;
+    (await analyzeAudio(audio)).forEach(p => {
+      const end = Math.min(total, Math.max(0, p.time - len * .55) + len), start = Math.max(0, end - len);
+      if (end - start < Math.min(12, len * .6)) return;
       const old = cands.find(c => Math.abs(c.start - start) < len * .65);
       if (old) old.score = Math.max(old.score, p.score); else cands.push({ start, end, score: p.score });
     });
     cands.sort((a, b) => b.score - a.score);
     const chosen = [];
     for (const c of cands) if (chosen.every(x => Math.abs(x.start - c.start) > len * .7)) { chosen.push(c); if (chosen.length >= max) break; }
-    if (!chosen.length) chosen.push({ start: 0, end: Math.min(videoDuration, len), score: .1 });
+    if (!chosen.length) chosen.push({ start: 0, end: Math.min(total, len), score: .1 });
     clips = chosen.sort((a, b) => a.start - b.start).map((c, i) => ({ ...c, id: i + 1 }));
-    $('clipStat').textContent = clips.length; renderClips();
-    status('Found ' + clips.length + ' moments. Preview them, then export.', 100, 'ok');
+    renderClips(); status('Found ' + clips.length + ' moments. Preview them, then export.', 100, 'ok');
   } catch (e) { status(e.message || 'Analysis failed.', 0, 'err'); }
   finally { busy = false; $('scan').disabled = false; $('stop').disabled = true; }
 };
@@ -215,7 +211,7 @@ function renderClips() {
     const m = document.createElement('div'); m.className = 'moment';
     m.innerHTML = '<div class="clip"><div><h3></h3><p></p></div><div class="btns"><button class="ghost pv">Preview</button><button class="go export">Export Short</button></div></div><div class="out"></div>';
     m.querySelector('h3').textContent = 'Moment ' + c.id + (c.score > 1.6 ? ' · strong audio peak' : '');
-    m.querySelector('p').textContent = `${fmt(c.start)} – ${fmt(c.end)} · ${Math.round(c.end - c.start)} seconds`;
+    m.querySelector('p').textContent = `${fmt(c.start)} to ${fmt(c.end)} · ${Math.round(c.end - c.start)} seconds`;
     m.querySelector('.pv').onclick = () => { $('pvVid').src = videoUrl + '#t=' + c.start + ',' + c.end; $('pv').showModal(); $('pvVid').play().catch(() => {}); };
     const ex = m.querySelector('.export'); ex.onclick = () => exportClip(c, ex, m.querySelector('.out'));
     box.append(m);
@@ -226,72 +222,91 @@ $('pvClose').onclick = () => { $('pvVid').pause(); $('pv').close(); };
 /* ---------- Transcript + metadata ---------- */
 async function makeTranscript(c) {
   if (transcripts.has(c.id)) return transcripts.get(c.id);
-  const audio = await decodeAudio(), dur = c.end - c.start;
-  const off = new OfflineAudioContext(1, Math.ceil(dur * 16000), 16000), src = off.createBufferSource();
-  src.buffer = audio; src.connect(off.destination); src.start(0, c.start, dur);
-  const samples = (await off.startRendering()).getChannelData(0);
-  status('Listening to the clip for captions…', 12);
-  const out = await transcriber(samples, { sampling_rate: 16000, return_timestamps: 'word', chunk_length_s: 30, stride_length_s: 5 });
-  const words = (out.chunks || []).filter(x => x.timestamp && x.timestamp[0] != null && x.text.trim())
-    .map(x => ({ start: +x.timestamp[0], end: +(x.timestamp[1] ?? x.timestamp[0] + .5), text: x.text.trim() }));
+  const audio = await decodeAudio(), d = audio.getChannelData(0);
+  const samples = d.slice(Math.floor(c.start * SR), Math.min(d.length, Math.ceil(c.end * SR)));
+  status('Listening to the clip for captions…', 8);
+  const chunks = await transcribe(samples);
+  const words = chunks.filter(x => x.timestamp && x.timestamp[0] != null && x.text.trim())
+    .map(x => ({ start: +x.timestamp[0], end: +(x.timestamp[1] ?? x.timestamp[0] + .4), text: x.text.trim().replace(/[^\w'’\-?!.,%$]/g, '') })).filter(w => w.text);
   transcripts.set(c.id, words); return words;
 }
-function captionLines(words) {
-  const groups = []; let g = [];
-  for (const w of words) { g.push(w); if (g.length >= 4 || g.map(x => x.text).join(' ').length > 22) { groups.push(g); g = []; } }
-  if (g.length) groups.push(g);
-  return groups.map(a => ({ start: a[0].start, end: Math.max(a.at(-1).end, a[0].start + .4), text: a.map(x => x.text).join(' ').replace(/\s+/g, ' ') })).filter(x => x.text);
+function captionGroups(words) {
+  const gr = []; let g = [];
+  for (const w of words) { g.push(w); if (g.length >= 3 || g.map(x => x.text).join(' ').length > 16 || /[.!?]$/.test(w.text)) { gr.push(g); g = []; } }
+  if (g.length) gr.push(g);
+  return gr.map(a => ({ start: a[0].start, end: a.at(-1).end + .2, words: a }));
 }
-const STOP = new Set('the a an and or but if so to of in on at for with from by is are was were be been it its this that these those i you he she we they me my your our their him her them as not no yes do does did have has had will would can could just like really very about into out up down over then than there here what when who how why all any some more most one get got going gonna okay yeah well also too much many dont thats im ive youre'.split(' '));
+const STOP = new Set('the a an and or but if so to of in on at for with from by is are was were be been it its this that these those i you he she we they me my your our their him her them as not no yes do does did have has had will would can could just like really very about into out up down over then than there here what when who how why all any some more most one get got going gonna okay yeah well also too much many dont thats im ive youre because know think want need make'.split(' '));
 function makeMeta(words, id) {
   const text = words.map(w => w.text).join(' ').replace(/\s+/g, ' ').trim();
   const base = file.name.replace(/\.[^.]+$/, '').replace(/[_-]+/g, ' ');
-  if (!text) return { title: `${base} (Part ${id})`.slice(0, 90), desc: `Clip ${id} from ${base}.`, tags: '#Shorts' };
+  if (text.length < 20) return { title: `${base} (Part ${id})`.slice(0, 90), desc: `Clip ${id} from ${base}.`, tags: '#Shorts' };
   const freq = {};
   text.toLowerCase().replace(/[^a-z\s]/g, ' ').split(/\s+/).filter(w => w.length > 3 && !STOP.has(w)).forEach(w => freq[w] = (freq[w] || 0) + 1);
   const keys = Object.entries(freq).sort((a, b) => b[1] - a[1]).slice(0, 4).map(x => x[0]);
-  let first = text.split(/(?<=[.!?])\s/)[0].replace(/^[\s,.-]+/, ''); first = first.charAt(0).toUpperCase() + first.slice(1);
-  return { title: first.length > 90 ? first.slice(0, 87).trim() + '…' : first, desc: text.slice(0, 300) + (text.length > 300 ? '…' : ''), tags: ['Shorts', ...keys.map(k => k[0].toUpperCase() + k.slice(1))].map(t => '#' + t).join(' ') };
+  const sents = text.split(/(?<=[.!?])\s+/).map(s => s.trim()).filter(s => s.length > 12);
+  const score = s => s.toLowerCase().split(/\W+/).reduce((a, w) => a + (freq[w] || 0), 0) / Math.sqrt(s.length);
+  let best = [...(sents.length ? sents : [text])].sort((a, b) => score(b) - score(a))[0].replace(/[.!?,]+$/, '');
+  if (best.length > 90) best = best.slice(0, 87).replace(/\s+\S*$/, '') + '…';
+  best = best.charAt(0).toUpperCase() + best.slice(1);
+  const desc = sents.slice(0, 2).join(' ').slice(0, 240) || text.slice(0, 240);
+  return { title: best, desc, tags: ['Shorts', ...keys.map(k => k[0].toUpperCase() + k.slice(1))].map(t => '#' + t).join(' ') };
 }
 
-/* ---------- Render the Short in the browser (canvas + MediaRecorder) ---------- */
+/* ---------- Render the exact clip in the browser ---------- */
 const FAMILY = { anton: 'Anton', bebas: '"Bebas Neue"', archivo: '"Archivo Black"' };
-async function renderShort(c, lines, onProg) {
-  const W = 1080, H = 1920, cv = document.createElement('canvas'); cv.width = W; cv.height = H;
-  const g = cv.getContext('2d'), sm = document.createElement('canvas'); sm.width = 54; sm.height = 96; const sg = sm.getContext('2d');
+async function renderShort(c, groups, onProg) {
+  const H = Number($('quality').value) === 1080 ? 1920 : 1280, W = H * 9 / 16, S = W / 1080;
+  const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+  const g = cv.getContext('2d', { alpha: false }), sm = document.createElement('canvas'); sm.width = 54; sm.height = 96; const sg = sm.getContext('2d');
   const v = document.createElement('video'); v.src = videoUrl; v.playsInline = true; v.preload = 'auto';
   await new Promise((ok, no) => { v.onloadeddata = ok; v.onerror = () => no(new Error('Could not play the video.')); });
-  v.currentTime = c.start; await new Promise(r => { v.onseeked = r; });
-  const fam = FAMILY[$('caption').value], blur = $('format').value === 'blur'; await document.fonts.load('72px ' + fam).catch(() => {});
+  await new Promise(r => { v.onseeked = r; v.currentTime = c.start; });
+  const fam = FAMILY[$('caption').value], blur = $('format').value === 'blur', up = $('caption').value !== 'archivo';
+  await document.fonts.load('80px ' + fam).catch(() => {});
   const ac = new (window.AudioContext || window.webkitAudioContext)(), dest = ac.createMediaStreamDestination();
   ac.createMediaElementSource(v).connect(dest);
   const stream = cv.captureStream(30); dest.stream.getAudioTracks().forEach(t => stream.addTrack(t));
   const mime = ['video/mp4;codecs=avc1.42E01E,mp4a.40.2', 'video/mp4', 'video/webm;codecs=vp9,opus', 'video/webm'].find(m => MediaRecorder.isTypeSupported(m));
   if (!mime) throw new Error('This browser cannot record video. Use Chrome or Edge.');
-  const rec = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: 6e6, audioBitsPerSecond: 128e3 }), chunks = [];
+  const rec = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: H > 1280 ? 8e6 : 5e6, audioBitsPerSecond: 128e3 }), chunks = [];
   rec.ondataavailable = e => e.data.size && chunks.push(e.data);
   const dur = c.end - c.start;
-  const frame = () => {
-    const vw = v.videoWidth, vh = v.videoHeight, t = v.currentTime - c.start;
-    g.fillStyle = '#000'; g.fillRect(0, 0, W, H);
+  const frame = t => {
+    const vw = v.videoWidth, vh = v.videoHeight;
     if (blur) {
       const s = Math.max(54 / vw, 96 / vh); sg.drawImage(v, (54 - vw * s) / 2, (96 - vh * s) / 2, vw * s, vh * s);
-      g.imageSmoothingEnabled = true; g.drawImage(sm, 0, 0, W, H); g.fillStyle = 'rgba(0,0,0,.3)'; g.fillRect(0, 0, W, H);
+      g.imageSmoothingEnabled = true; g.drawImage(sm, 0, 0, W, H); g.fillStyle = 'rgba(0,0,0,.35)'; g.fillRect(0, 0, W, H);
       const f = Math.min(W / vw, H / vh); g.drawImage(v, (W - vw * f) / 2, (H - vh * f) / 2, vw * f, vh * f);
     } else { const s = Math.max(W / vw, H / vh); g.drawImage(v, (W - vw * s) / 2, (H - vh * s) / 2, vw * s, vh * s); }
-    const l = lines.find(x => t >= x.start && t <= x.end + .15);
-    if (l) {
-      g.font = '84px ' + fam; g.textAlign = 'center'; g.textBaseline = 'middle'; g.lineJoin = 'round'; g.lineWidth = 14; g.strokeStyle = '#000'; g.fillStyle = '#fff';
-      let parts = [l.text]; if (g.measureText(l.text).width > 960) { const w = l.text.split(' '), h = Math.ceil(w.length / 2); parts = [w.slice(0, h).join(' '), w.slice(h).join(' ')]; }
-      parts.forEach((p, i) => { const y = H * .72 + (i - (parts.length - 1) / 2) * 100; g.strokeText(p, W / 2, y); g.fillText(p, W / 2, y); });
+    const gp = groups.find(x => t >= x.start && t <= x.end);
+    if (gp) {
+      let fs = 88 * S; g.textBaseline = 'middle'; g.textAlign = 'left'; g.lineJoin = 'round';
+      const texts = gp.words.map(w => up ? w.text.toUpperCase() : w.text);
+      const measure = () => { g.font = fs + 'px ' + fam; return texts.reduce((a, s) => a + g.measureText(s).width, 0) + g.measureText(' ').width * (texts.length - 1); };
+      let tw = measure(); if (tw > W * .88) { fs *= W * .88 / tw; tw = measure(); }
+      let x = (W - tw) / 2; const y = H * .7;
+      g.lineWidth = fs * .17; g.strokeStyle = '#000';
+      texts.forEach((s, i) => { const w = gp.words[i], on = t >= w.start && t <= w.end + .05; g.strokeText(s, x, y); g.fillStyle = on ? '#ffe14d' : '#fff'; g.fillText(s, x, y); x += g.measureText(s + ' ').width; });
     }
-    onProg(Math.min(1, Math.max(0, t / dur)));
+    onProg(Math.min(1, Math.max(0, t / dur)), t);
   };
   return new Promise((ok, no) => {
-    let done = false;
-    const finish = () => { if (done) return; done = true; clearInterval(tm); v.pause(); rec.onstop = () => { ac.close(); ok({ blob: new Blob(chunks, { type: mime.split(';')[0] }), ext: mime.startsWith('video/mp4') ? 'mp4' : 'webm' }); }; rec.state !== 'inactive' ? rec.stop() : rec.onstop(); };
-    const tm = setInterval(() => { if (cancel) { done = true; clearInterval(tm); v.pause(); rec.state !== 'inactive' && rec.stop(); ac.close(); return no(new Error('Export stopped.')); } frame(); if (v.currentTime >= c.end - .05 || v.ended) finish(); }, 33);
-    rec.start(1000); ac.resume().then(() => v.play()).catch(e => { clearInterval(tm); no(new Error('Playback was blocked: ' + e.message)); });
+    let done = false, started = false;
+    const finish = () => {
+      if (done) return; done = true; v.pause();
+      rec.onstop = () => { ac.close(); ok({ blob: new Blob(chunks, { type: mime.split(';')[0] }), ext: mime.startsWith('video/mp4') ? 'mp4' : 'webm' }); };
+      rec.state !== 'inactive' ? rec.stop() : rec.onstop();
+    };
+    const abort = m => { if (done) return; done = true; v.pause(); rec.state !== 'inactive' && rec.stop(); ac.close(); no(new Error(m)); };
+    const step = (now, meta) => {
+      if (done) return; if (cancel) return abort('Export stopped.');
+      const t = (meta ? meta.mediaTime : v.currentTime) - c.start;
+      if (t >= 0) { frame(t); if (!started) { started = true; rec.start(1000); } }
+      if (t >= dur - .03 || v.ended) return finish();
+      v.requestVideoFrameCallback ? v.requestVideoFrameCallback(step) : setTimeout(step, 33);
+    };
+    ac.resume().then(() => v.play()).then(() => step()).catch(e => abort('Playback was blocked: ' + e.message));
   });
 }
 
@@ -306,32 +321,34 @@ async function exportClip(c, btn, out) {
     if (wantCaps || aiReady) { await loadAI(); words = await makeTranscript(c); }
     if (wantCaps && !words.length) throw new Error('No speech found in this clip. Turn captions off to export it anyway.');
     const dur = Math.round(c.end - c.start);
-    status(`Recording your Short in real time (${dur}s). Keep this tab open and visible.`, 0);
-    const { blob, ext } = await renderShort(c, wantCaps ? captionLines(words) : [], p => $('progress').style.width = (p * 100) + '%');
-    showOutput(out, c, blob, ext, makeMeta(words, c.id));
-    status('Short ' + c.id + ' is ready right below its moment.', 100, 'ok');
+    status(`Recording your ${dur}s Short in real time. Keep this tab open and visible.`, 0);
+    const { blob, ext } = await renderShort(c, wantCaps ? captionGroups(words) : [], (p, t) => { $('progress').style.width = (p * 100) + '%'; $('status').textContent = `Recording… ${Math.floor(t)}s of ${dur}s. Keep this tab open and visible.`; });
+    showOutput(out, c, blob, ext, makeMeta(words, c.id), dur);
+    status('Short ' + c.id + ' is ready right under its moment.', 100, 'ok');
     out.scrollIntoView({ behavior: 'smooth', block: 'center' });
   } catch (e) { console.error(e); status(e.message || 'Export failed.', 0, 'err'); }
   finally { busy = false; lock(false); $('stop').disabled = true; btn.textContent = 'Export Short'; }
 }
 
 function copy(text, btn) {
-  const done = () => { const o = btn.textContent; btn.textContent = 'Copied ✓'; setTimeout(() => btn.textContent = o, 1400); };
-  navigator.clipboard?.writeText(text).then(done).catch(() => fallback()) ?? fallback();
-  function fallback() { const t = document.createElement('textarea'); t.value = text; document.body.append(t); t.select(); try { document.execCommand('copy'); done(); } catch {} t.remove(); }
+  const o = btn.textContent, done = () => { btn.textContent = 'Copied ✓'; setTimeout(() => btn.textContent = o, 1400); };
+  const fb = () => { const t = document.createElement('textarea'); t.value = text; document.body.append(t); t.select(); try { document.execCommand('copy'); done(); } catch {} t.remove(); };
+  navigator.clipboard ? navigator.clipboard.writeText(text).then(done, fb) : fb();
 }
-function showOutput(out, c, blob, ext, meta) {
+function showOutput(out, c, blob, ext, meta, dur) {
   const url = URL.createObjectURL(blob);
   out.innerHTML = `<video controls playsinline></video><div class="fields">
    <div class="lab">Title<button class="ghost sm" data-c="t">Copy</button></div><input type="text" class="t" maxlength="100">
    <div class="lab">Description<button class="ghost sm" data-c="d">Copy</button></div><textarea class="d"></textarea>
    <div class="lab">Hashtags<button class="ghost sm" data-c="h">Copy</button></div><input type="text" class="h">
-   <div class="btns" style="margin-top:14px"><button class="go all">Copy everything</button><button class="ghost dl">Download video (.${ext})</button></div></div>`;
-  const q = s => out.querySelector(s); q('video').src = url; q('.t').value = meta.title; q('.d').value = meta.desc; q('.h').value = meta.tags;
+   <div class="btns" style="margin-top:16px"><button class="go all">Copy title, description and hashtags</button><a class="btn ghost dl" href="${url}" download="short_${c.id}.${ext}">Download video (.${ext})</a></div>
+   <p class="info">Length: about ${dur} seconds · ${size(blob.size)} · vertical 9:16</p></div>`;
+  const q = s => out.querySelector(s), v = q('video'); v.src = url;
+  v.onloadedmetadata = () => { if (v.duration === Infinity) { v.currentTime = 1e7; v.ontimeupdate = () => { v.ontimeupdate = null; v.currentTime = 0; }; } };
+  q('.t').value = meta.title; q('.d').value = meta.desc; q('.h').value = meta.tags;
   const val = k => ({ t: q('.t').value, d: q('.d').value, h: q('.h').value })[k];
   out.querySelectorAll('[data-c]').forEach(b => b.onclick = () => copy(val(b.dataset.c), b));
   q('.all').onclick = e => copy(val('t') + '\n\n' + val('d') + '\n\n' + val('h'), e.target);
-  q('.dl').onclick = () => { const a = document.createElement('a'); a.href = url; a.download = 'short_' + c.id + '.' + ext; a.click(); };
   out.classList.add('show');
 }
 </script>
