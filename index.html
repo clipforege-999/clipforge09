@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ClipForge — Long videos to upload-ready Shorts</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Instrument+Sans:wght@400;500;600&display=swap">
+<title>ClipForge — Long videos to ready-to-post Shorts</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Bebas+Neue&family=Bricolage+Grotesque:wght@600;800&family=Instrument+Sans:wght@400;500;600&display=swap">
 <style>
 :root{--bg:#eef0ec;--ink:#13171d;--mut:#5d6672;--line:#d6dad3;--card:#fff;--blue:#2447f5;--lime:#d4f55a;--red:#c8312b;--ok:#13803f}
 *{box-sizing:border-box}
@@ -13,9 +13,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 button{cursor:pointer;border:0;border-radius:10px;padding:10px 16px;font-weight:600;background:var(--ink);color:#fff}
 button:hover{opacity:.88}button:disabled{opacity:.4;cursor:not-allowed}
 button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
-button.go{background:var(--blue)}
+button.go{background:var(--blue)}button.sm{padding:6px 11px;font-size:13px}
 :focus-visible{outline:3px solid var(--blue);outline-offset:2px}
-header{display:flex;justify-content:space-between;align-items:center;padding:16px clamp(16px,4vw,48px);border-bottom:1px solid var(--line);background:var(--card)}
+header{padding:16px clamp(16px,4vw,48px);border-bottom:1px solid var(--line);background:var(--card)}
 .brand{font:800 22px 'Bricolage Grotesque';letter-spacing:-.5px;display:flex;align-items:center;gap:10px}
 .brand i{width:30px;height:30px;border-radius:9px;background:var(--lime);display:grid;place-items:center;font-style:normal;font-size:16px;border:2px solid var(--ink)}
 main{max-width:1180px;margin:0 auto;padding:36px 20px 60px}
@@ -32,8 +32,9 @@ h2{font:700 20px 'Bricolage Grotesque';margin:0 0 4px}
 .fileline{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:12px;padding:10px 12px;background:#f2f4ef;border-radius:10px}
 .fileline b{overflow-wrap:anywhere}
 .controls{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
-label.f{display:block;font-size:13px;color:var(--mut);font-weight:500}
-select,input[type=text],input[type=password],textarea{width:100%;margin-top:5px;padding:9px 10px;border:1px solid var(--line);border-radius:9px;background:#fff}
+label.f{display:block;font-size:13px;color:var(--mut);font-weight:500;margin-top:10px}
+.controls label.f{margin:0}
+select,input[type=text],textarea{width:100%;margin-top:5px;padding:9px 10px;border:1px solid var(--line);border-radius:9px;background:#fff}
 textarea{resize:vertical;min-height:84px}
 .chk{display:flex;gap:9px;align-items:center;margin-top:14px;font-size:14px}
 .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
@@ -45,36 +46,35 @@ textarea{resize:vertical;min-height:84px}
 .eng{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-size:13.5px}
 .eng small{display:block;color:var(--mut)}
 .tip{font-size:13px;color:var(--mut);margin-top:12px}
-.clip{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px 0;border-top:1px solid var(--line)}
-.clip h3{margin:0;font-size:15px}.clip p{margin:2px 0 0;color:var(--mut);font-size:13px}
-.clip .btns{display:flex;gap:8px;flex-shrink:0}
-.out{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
-.exp{border:1px solid var(--line);border-radius:14px;padding:12px;background:#fafbf8}
-.exp video{width:100%;aspect-ratio:9/16;max-height:380px;background:#000;border-radius:10px;display:block}
-.exp .btns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
-.exp .msg{margin-top:8px}
+.moment{border-top:1px solid var(--line);padding:16px 0}
+.moment:first-child{border-top:0}
+.clip{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.clip h3{margin:0;font-size:16px}.clip p{margin:2px 0 0;color:var(--mut);font-size:13px}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+.out{margin-top:16px;display:none;gap:22px;flex-wrap:wrap;background:#f7f8f5;border:1px solid var(--line);border-radius:14px;padding:16px}
+.out.show{display:flex}
+.out video{width:240px;max-width:100%;aspect-ratio:9/16;background:#000;border-radius:12px;display:block}
+.out .fields{flex:1;min-width:260px}
+.out .lab{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:13px;color:var(--mut);font-weight:500}
+.out .lab+input,.out .lab+textarea{margin-top:4px}
 dialog{border:0;border-radius:16px;padding:20px;max-width:min(94vw,560px);width:100%}
 dialog::backdrop{background:#000a}
 dialog video{width:100%;max-height:70vh;background:#000;border-radius:10px}
-ol{padding-left:20px;font-size:13.5px}code{background:#f0f2ed;padding:1px 5px;border-radius:5px;word-break:break-all}
 @media(max-width:860px){.grid{grid-template-columns:1fr}}
-@media(max-width:520px){.controls{grid-template-columns:1fr}.clip{flex-direction:column;align-items:flex-start}}
+@media(max-width:520px){.controls{grid-template-columns:1fr}.clip{flex-direction:column;align-items:flex-start}.out video{width:100%;max-height:60vh}}
 @media(prefers-reduced-motion:reduce){.bar i{transition:none}}
 </style>
 </head>
 <body>
-<header>
- <div class="brand"><i>✂</i>ClipForge</div>
- <button class="ghost" id="openSet">YouTube connection</button>
-</header>
+<header><div class="brand"><i>✂</i>ClipForge</div></header>
 <main>
-<h1>Turn any long video into upload-ready Shorts.</h1>
-<p class="lead">Podcasts, lectures, vlogs, interviews, gameplay, events — drop in a video and get vertical clips with burned-in captions, a title, a description and hashtags, ready to post.</p>
+<h1>Turn any long video into ready-to-post Shorts.</h1>
+<p class="lead">Podcasts, lectures, vlogs, interviews, gameplay, events. Drop in a video and get vertical clips with captions, plus a title, description and hashtags to copy.</p>
 
 <div class="grid">
 <section class="card">
  <h2>Your video</h2>
- <p class="sub">Works with any MP4, MOV or WebM. Nothing is uploaded until you choose to post.</p>
+ <p class="sub">Works with any MP4, MOV or WebM. Everything stays on your device.</p>
  <div class="drop" id="drop">
   <strong>Drop a video here</strong>
   <p class="sub" style="margin:4px 0 12px">or pick a file from your device</p>
@@ -86,9 +86,9 @@ ol{padding-left:20px;font-size:13.5px}code{background:#f0f2ed;padding:1px 5px;bo
   <label class="f">Clip length<select id="duration"><option value="30">About 30 seconds</option><option value="45" selected>About 45 seconds</option><option value="58">Just under 60 seconds</option></select></label>
   <label class="f">Number of clips<select id="count"><option>3</option><option selected>5</option><option>8</option><option>10</option></select></label>
   <label class="f">Vertical layout<select id="format"><option value="blur" selected>Full video on blurred background</option><option value="crop">Center crop (fills screen)</option></select></label>
-  <label class="f">Caption style<select id="caption"><option value="anton" selected>Anton — bold</option><option value="bebas">Bebas Neue — clean</option><option value="archivo">Archivo Black — heavy</option></select></label>
+  <label class="f">Caption style<select id="caption"><option value="anton" selected>Anton: bold</option><option value="bebas">Bebas Neue: clean</option><option value="archivo">Archivo Black: heavy</option></select></label>
  </div>
- <label class="chk"><input type="checkbox" id="captions" checked> Burn English captions into the video</label>
+ <label class="chk"><input type="checkbox" id="captions" checked> Add English captions to the video</label>
  <div class="row"><button id="scan" class="go" disabled>Find best moments</button><button id="stop" class="ghost" disabled>Stop</button></div>
  <div class="msg" id="status" role="status" aria-live="polite">Choose a video to begin.</div>
  <div class="bar"><i id="progress"></i></div>
@@ -96,70 +96,47 @@ ol{padding-left:20px;font-size:13.5px}code{background:#f0f2ed;padding:1px 5px;bo
 </section>
 
 <aside class="card">
- <h2>Setup</h2>
- <p class="sub">One-time downloads, then everything runs in this tab.</p>
+ <h2>Your video at a glance</h2>
+ <p class="sub">No installs. The video is made right in your browser.</p>
  <div class="stats"><div><b id="durationStat">—</b><span>Length</span></div><div><b id="sizeStat">—</b><span>Size</span></div><div><b id="clipStat">0</b><span>Moments</span></div></div>
- <div class="eng"><div>Video engine<small id="engineState">Not loaded</small></div><button id="loadEngine" class="ghost">Load</button></div>
- <div class="eng"><div>Caption AI<small id="aiState">Not loaded</small></div><button id="loadAI" class="ghost">Load</button></div>
- <p class="tip">Tip: keep source videos under ~700 MB, close other tabs, and export one clip at a time. Captions and titles need the Caption AI.</p>
+ <div class="eng"><div>Caption AI<small id="aiState">Loads automatically on first export</small></div><button id="loadAI" class="ghost sm">Load now</button></div>
+ <p class="tip"><b>How exporting works:</b> the Short is recorded in real time, so a 45 second clip takes about 45 seconds. Keep this tab open and visible while it records. Use Chrome or Edge for MP4 output; other browsers may give WebM, which also uploads fine.</p>
 </aside>
 </div>
 
-<section class="card sec"><h2>Best moments</h2><p class="sub">Preview the original footage, then export the ones you like.</p><div id="results"><p class="sub">Your moments will appear here.</p></div></section>
-<section class="card sec"><h2>Ready to post</h2><p class="sub">Edit the title, description and hashtags, then download or upload to YouTube.</p><div id="exports" class="out"><p class="sub">Exported Shorts appear here.</p></div></section>
+<section class="card sec"><h2>Best moments</h2><p class="sub">Preview the original footage, then export. Your finished Short appears right under the moment.</p><div id="results"><p class="sub">Your moments will appear here.</p></div></section>
 </main>
 
 <dialog id="pv"><video id="pvVid" controls playsinline></video><div class="row"><button id="pvClose" class="ghost">Close</button></div></dialog>
 
-<dialog id="set">
- <h2>Connect YouTube</h2>
- <p class="sub">Uploads go straight from your browser to your own channel. No server, no password sharing.</p>
- <ol>
-  <li>Open Google Cloud Console, create a project and enable <b>YouTube Data API v3</b>.</li>
-  <li>Create an <b>OAuth client ID</b> of type <b>Web application</b>.</li>
-  <li>Under <b>Authorized JavaScript origins</b> add: <code id="origin"></code></li>
-  <li>Add your Google account as a <b>test user</b> on the consent screen, then paste the Client ID below.</li>
- </ol>
- <label class="f">OAuth Client ID<input type="text" id="cid" placeholder="1234-abc.apps.googleusercontent.com"></label>
- <p class="tip">Until Google audits your app, YouTube may keep uploads <b>private</b>. You can make them public in YouTube Studio. Facebook and TikTok need a server and are not included here.</p>
- <div class="row"><button id="saveSet" class="go">Save</button><button id="closeSet" class="ghost">Close</button></div>
-</dialog>
-
 <script type="module">
 const $ = id => document.getElementById(id);
-const MAX_BYTES = 2 * 1024 ** 3, WARN_BYTES = 700 * 1024 ** 2;
-let file = null, videoUrl = null, videoDuration = 0, ffmpeg = null, engineReady = false, transcriber = null, aiReady = false;
-let audioBuf = null, srcName = null, stopped = false, busy = false, clips = [], token = null, tokenExp = 0;
+const MAX_BYTES = 2 * 1024 ** 3;
+let file = null, videoUrl = null, videoDuration = 0, transcriber = null, aiReady = false, aiLoading = null;
+let audioBuf = null, cancel = false, busy = false, clips = [];
 const transcripts = new Map();
 
-const store = { get: k => { try { return localStorage.getItem(k) || ''; } catch { return ''; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch {} } };
 const setMsg = (el, s, cls = '') => { el.textContent = s; el.className = 'msg ' + cls; };
 const status = (s, p, cls = '') => { setMsg($('status'), s, cls); if (p !== undefined) $('progress').style.width = Math.max(0, Math.min(100, p)) + '%'; };
 const fmt = t => { t = Math.max(0, Math.floor(t)); return String(Math.floor(t / 60)).padStart(2, '0') + ':' + String(t % 60).padStart(2, '0'); };
 const size = n => n < 1048576 ? (n / 1024).toFixed(1) + ' KB' : n < 1073741824 ? (n / 1048576).toFixed(1) + ' MB' : (n / 1073741824).toFixed(2) + ' GB';
-const engState = (id, s) => $(id).textContent = s;
 
 /* ---------- File ---------- */
 function resetSession() {
-  if (ffmpeg && engineReady && srcName) { try { ffmpeg.FS('unlink', srcName); } catch {} }
-  clips = []; transcripts.clear(); audioBuf = null; srcName = null;
-  $('clipStat').textContent = '0';
-  $('results').innerHTML = '<p class="sub">Your moments will appear here.</p>';
+  clips = []; transcripts.clear(); audioBuf = null;
+  $('clipStat').textContent = '0'; $('results').innerHTML = '<p class="sub">Your moments will appear here.</p>';
 }
 function setFile(f) {
   if (!f) return;
   if (!f.type.startsWith('video/')) return status('Please choose a video file.', 0, 'err');
-  if (f.size > MAX_BYTES) return status('This file is over 2 GB. Trim it first, the in-browser engine cannot handle it.', 0, 'err');
+  if (f.size > MAX_BYTES) return status('This file is over 2 GB. Trim it first.', 0, 'err');
   resetSession(); file = f;
   if (videoUrl) URL.revokeObjectURL(videoUrl);
   videoUrl = URL.createObjectURL(f);
   $('fileName').textContent = f.name; $('fileMeta').textContent = size(f.size);
   $('fileInfo').hidden = false; $('scan').disabled = false;
   const v = document.createElement('video'); v.preload = 'metadata'; v.src = videoUrl;
-  v.onloadedmetadata = () => {
-    videoDuration = v.duration; $('durationStat').textContent = fmt(videoDuration); $('sizeStat').textContent = size(f.size);
-    status(f.size > WARN_BYTES ? 'Large file: export may run out of memory. A shorter source is safer.' : 'Video ready. Load both engines, then find best moments.', 0);
-  };
+  v.onloadedmetadata = () => { videoDuration = v.duration; $('durationStat').textContent = fmt(videoDuration); $('sizeStat').textContent = size(f.size); status('Video ready. Click “Find best moments”.', 0); };
   v.onerror = () => status('Could not read this video. Try MP4 (H.264/AAC).', 0, 'err');
 }
 $('choose').onclick = () => $('file').click();
@@ -170,35 +147,25 @@ const drop = $('drop');
 ['dragleave', 'drop'].forEach(e => drop.addEventListener(e, x => { x.preventDefault(); drop.classList.remove('drag'); }));
 drop.addEventListener('drop', e => setFile(e.dataTransfer.files[0]));
 
-/* ---------- Engines ---------- */
-async function loadScript(srcs) {
-  let last;
-  for (const src of srcs) {
-    try { await new Promise((ok, no) => { const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = () => no(new Error('Could not download ' + src)); document.head.appendChild(s); }); return; } catch (e) { last = e; }
-  }
-  throw last;
+/* ---------- Caption AI (only needed for captions and titles) ---------- */
+function loadAI() {
+  if (aiReady) return Promise.resolve();
+  if (aiLoading) return aiLoading;
+  $('loadAI').disabled = true; $('aiState').textContent = 'Downloading…';
+  aiLoading = (async () => {
+    try {
+      const { pipeline, env } = await import('https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.2');
+      env.allowLocalModels = false;
+      transcriber = await pipeline('automatic-speech-recognition', 'Xenova/whisper-tiny.en', { dtype: 'q8', progress_callback: p => { if (p.status === 'progress' && p.total) $('aiState').textContent = 'Downloading… ' + Math.round(p.progress) + '%'; } });
+      aiReady = true; $('aiState').textContent = 'Ready ✓'; $('loadAI').textContent = 'Ready';
+    } catch (e) {
+      console.error(e); aiLoading = null; $('loadAI').disabled = false; $('aiState').textContent = 'Failed to load. Check your internet.';
+      throw new Error('Caption AI could not load. Check your internet, or turn captions off.');
+    }
+  })();
+  return aiLoading;
 }
-$('loadEngine').onclick = async () => {
-  if (engineReady) return;
-  $('loadEngine').disabled = true; engState('engineState', 'Loading…');
-  try {
-    if (!window.FFmpeg) await loadScript(['https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js', 'https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js']);
-    ffmpeg = window.FFmpeg.createFFmpeg({ log: false, corePath: 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js' });
-    ffmpeg.setProgress(({ ratio }) => { if (busy && ratio > 0 && ratio <= 1) $('progress').style.width = (55 + ratio * 38) + '%'; });
-    await ffmpeg.load(); engineReady = true; srcName = null;
-    engState('engineState', 'Ready ✓'); $('loadEngine').textContent = 'Ready';
-  } catch (e) { console.error(e); engState('engineState', 'Failed. Use https or localhost, not file://.'); $('loadEngine').disabled = false; }
-};
-$('loadAI').onclick = async () => {
-  if (aiReady) return;
-  $('loadAI').disabled = true; engState('aiState', 'Downloading…');
-  try {
-    const { pipeline, env } = await import('https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.2');
-    env.allowLocalModels = false;
-    transcriber = await pipeline('automatic-speech-recognition', 'Xenova/whisper-tiny.en', { dtype: 'q8', progress_callback: p => { if (p.status === 'progress' && p.total) engState('aiState', 'Downloading… ' + Math.round(p.progress) + '%'); } });
-    aiReady = true; engState('aiState', 'Ready ✓'); $('loadAI').textContent = 'Ready';
-  } catch (e) { console.error(e); engState('aiState', 'Failed. Check your connection.'); $('loadAI').disabled = false; }
-};
+$('loadAI').onclick = () => loadAI().catch(() => {});
 
 /* ---------- Audio + moments ---------- */
 async function decodeAudio() {
@@ -216,16 +183,16 @@ function analyzeAudio(buf) {
   return vals.map((v, i) => ({ time: i * .5, score: v / th })).filter(x => x.score >= 1);
 }
 $('scan').onclick = async () => {
-  if (!file) return;
-  stopped = false; busy = true; $("scan").disabled = true; $('stop').disabled = false; clips = []; transcripts.clear();
+  if (!file || busy) return;
+  cancel = false; busy = true; $('scan').disabled = true; $('stop').disabled = false; clips = []; transcripts.clear();
   try {
-    status('Reading audio locally…', 8);
+    status('Reading audio…', 8);
     const audio = await decodeAudio();
-    if (stopped) throw new Error('Scan stopped.');
+    if (cancel) throw new Error('Scan stopped.');
     status('Ranking moments…', 50);
     const len = Number($('duration').value), max = Number($('count').value), cands = [];
     analyzeAudio(audio).forEach(p => {
-      let end = Math.min(videoDuration, Math.max(0, p.time - len * .55) + len), start = Math.max(0, end - len);
+      const end = Math.min(videoDuration, Math.max(0, p.time - len * .55) + len), start = Math.max(0, end - len);
       if (end - start < Math.min(15, len * .6)) return;
       const old = cands.find(c => Math.abs(c.start - start) < len * .65);
       if (old) old.score = Math.max(old.score, p.score); else cands.push({ start, end, score: p.score });
@@ -236,26 +203,22 @@ $('scan').onclick = async () => {
     if (!chosen.length) chosen.push({ start: 0, end: Math.min(videoDuration, len), score: .1 });
     clips = chosen.sort((a, b) => a.start - b.start).map((c, i) => ({ ...c, id: i + 1 }));
     $('clipStat').textContent = clips.length; renderClips();
-    status('Scan complete. Preview the moments, then export.', 100, 'ok');
+    status('Found ' + clips.length + ' moments. Preview them, then export.', 100, 'ok');
   } catch (e) { status(e.message || 'Analysis failed.', 0, 'err'); }
   finally { busy = false; $('scan').disabled = false; $('stop').disabled = true; }
 };
-$('stop').onclick = () => { stopped = true; status('Stopping…', 0); };
+$('stop').onclick = () => { cancel = true; status('Stopping…'); };
 
 function renderClips() {
   const box = $('results'); box.innerHTML = '';
   clips.forEach(c => {
-    const row = document.createElement('div'); row.className = 'clip';
-    const info = document.createElement('div');
-    info.innerHTML = '<h3></h3><p></p>';
-    info.querySelector('h3').textContent = 'Moment ' + c.id + (c.score > 1.6 ? ' · strong audio peak' : '');
-    info.querySelector('p').textContent = `${fmt(c.start)} – ${fmt(c.end)} · ${Math.round(c.end - c.start)} seconds`;
-    const b = document.createElement('div'); b.className = 'btns';
-    const pv = document.createElement('button'); pv.className = 'ghost'; pv.textContent = 'Preview';
-    pv.onclick = () => { $('pvVid').src = videoUrl + '#t=' + c.start + ',' + c.end; $('pv').showModal(); $('pvVid').play().catch(() => {}); };
-    const ex = document.createElement('button'); ex.className = 'go export'; ex.textContent = 'Export Short';
-    ex.onclick = () => exportClip(c, ex);
-    b.append(pv, ex); row.append(info, b); box.append(row);
+    const m = document.createElement('div'); m.className = 'moment';
+    m.innerHTML = '<div class="clip"><div><h3></h3><p></p></div><div class="btns"><button class="ghost pv">Preview</button><button class="go export">Export Short</button></div></div><div class="out"></div>';
+    m.querySelector('h3').textContent = 'Moment ' + c.id + (c.score > 1.6 ? ' · strong audio peak' : '');
+    m.querySelector('p').textContent = `${fmt(c.start)} – ${fmt(c.end)} · ${Math.round(c.end - c.start)} seconds`;
+    m.querySelector('.pv').onclick = () => { $('pvVid').src = videoUrl + '#t=' + c.start + ',' + c.end; $('pv').showModal(); $('pvVid').play().catch(() => {}); };
+    const ex = m.querySelector('.export'); ex.onclick = () => exportClip(c, ex, m.querySelector('.out'));
+    box.append(m);
   });
 }
 $('pvClose').onclick = () => { $('pvVid').pause(); $('pv').close(); };
@@ -267,136 +230,110 @@ async function makeTranscript(c) {
   const off = new OfflineAudioContext(1, Math.ceil(dur * 16000), 16000), src = off.createBufferSource();
   src.buffer = audio; src.connect(off.destination); src.start(0, c.start, dur);
   const samples = (await off.startRendering()).getChannelData(0);
-  status('Whisper is listening to the clip…', 14);
+  status('Listening to the clip for captions…', 12);
   const out = await transcriber(samples, { sampling_rate: 16000, return_timestamps: 'word', chunk_length_s: 30, stride_length_s: 5 });
   const words = (out.chunks || []).filter(x => x.timestamp && x.timestamp[0] != null && x.text.trim())
     .map(x => ({ start: +x.timestamp[0], end: +(x.timestamp[1] ?? x.timestamp[0] + .5), text: x.text.trim() }));
   transcripts.set(c.id, words); return words;
 }
-function captionLines(words, dur) {
+function captionLines(words) {
   const groups = []; let g = [];
   for (const w of words) { g.push(w); if (g.length >= 4 || g.map(x => x.text).join(' ').length > 22) { groups.push(g); g = []; } }
   if (g.length) groups.push(g);
-  return groups.map(a => ({ start: Math.max(0, a[0].start), end: Math.min(dur, a.at(-1).end), text: a.map(x => x.text).join(' ').replace(/[\r\n]+/g, ' ') })).filter(x => x.end > x.start && x.text).slice(0, 60);
+  return groups.map(a => ({ start: a[0].start, end: Math.max(a.at(-1).end, a[0].start + .4), text: a.map(x => x.text).join(' ').replace(/\s+/g, ' ') })).filter(x => x.text);
 }
-const STOP = new Set('the a an and or but if so to of in on at for with from by is are was were be been it its this that these those i you he she we they me my your our their him her them as not no yes do does did have has had will would can could just like really very about into out up down over then than there here what when who how why all any some more most one get got going gonna okay yeah well also too much many its dont thats im ive youre'.split(' '));
+const STOP = new Set('the a an and or but if so to of in on at for with from by is are was were be been it its this that these those i you he she we they me my your our their him her them as not no yes do does did have has had will would can could just like really very about into out up down over then than there here what when who how why all any some more most one get got going gonna okay yeah well also too much many dont thats im ive youre'.split(' '));
 function makeMeta(words, id) {
   const text = words.map(w => w.text).join(' ').replace(/\s+/g, ' ').trim();
   const base = file.name.replace(/\.[^.]+$/, '').replace(/[_-]+/g, ' ');
-  if (!text) return { title: `${base} — Part ${id}`.slice(0, 90) + ' #Shorts', desc: `Clip ${id} from ${base}.\n\n#Shorts`, tags: ['Shorts'] };
+  if (!text) return { title: `${base} (Part ${id})`.slice(0, 90), desc: `Clip ${id} from ${base}.`, tags: '#Shorts' };
   const freq = {};
   text.toLowerCase().replace(/[^a-z\s]/g, ' ').split(/\s+/).filter(w => w.length > 3 && !STOP.has(w)).forEach(w => freq[w] = (freq[w] || 0) + 1);
   const keys = Object.entries(freq).sort((a, b) => b[1] - a[1]).slice(0, 4).map(x => x[0]);
   let first = text.split(/(?<=[.!?])\s/)[0].replace(/^[\s,.-]+/, ''); first = first.charAt(0).toUpperCase() + first.slice(1);
-  const title = (first.length > 85 ? first.slice(0, 82).trim() + '…' : first) + ' #Shorts';
-  const tags = ['Shorts', ...keys.map(k => k.charAt(0).toUpperCase() + k.slice(1))];
-  return { title, desc: text.slice(0, 300) + (text.length > 300 ? '…' : '') + '\n\n' + tags.map(t => '#' + t).join(' '), tags };
+  return { title: first.length > 90 ? first.slice(0, 87).trim() + '…' : first, desc: text.slice(0, 300) + (text.length > 300 ? '…' : ''), tags: ['Shorts', ...keys.map(k => k[0].toUpperCase() + k.slice(1))].map(t => '#' + t).join(' ') };
 }
 
-const FONTS = {
-  anton: 'https://raw.githubusercontent.com/google/fonts/main/ofl/anton/Anton-Regular.ttf',
-  bebas: 'https://raw.githubusercontent.com/google/fonts/main/ofl/bebasneue/BebasNeue-Regular.ttf',
-  archivo: 'https://raw.githubusercontent.com/google/fonts/main/ofl/archivoblack/ArchivoBlack-Regular.ttf'
-};
-
-/* ---------- Export ---------- */
-const lock = off => document.querySelectorAll('button.export').forEach(b => b.disabled = off);
-async function exportClip(c, btn) {
-  if (busy) return;
-  if (!engineReady) return status('Load the video engine first.', 0, 'err');
-  const wantCaps = $('captions').checked;
-  if (wantCaps && !aiReady) return status('Load the Caption AI first, or turn captions off.', 0, 'err');
-  busy = true; lock(true); btn.textContent = 'Working…';
-  const temp = [];
-  try {
-    const words = aiReady ? await makeTranscript(c) : [];
-    status('Preparing render…', 30);
-    if (!srcName) {
-      const ext = (file.name.split('.').pop() || 'mp4').toLowerCase().replace(/[^a-z0-9]/g, '') || 'mp4';
-      srcName = 'source.' + ext; ffmpeg.FS('writeFile', srcName, new Uint8Array(await file.arrayBuffer()));
+/* ---------- Render the Short in the browser (canvas + MediaRecorder) ---------- */
+const FAMILY = { anton: 'Anton', bebas: '"Bebas Neue"', archivo: '"Archivo Black"' };
+async function renderShort(c, lines, onProg) {
+  const W = 1080, H = 1920, cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+  const g = cv.getContext('2d'), sm = document.createElement('canvas'); sm.width = 54; sm.height = 96; const sg = sm.getContext('2d');
+  const v = document.createElement('video'); v.src = videoUrl; v.playsInline = true; v.preload = 'auto';
+  await new Promise((ok, no) => { v.onloadeddata = ok; v.onerror = () => no(new Error('Could not play the video.')); });
+  v.currentTime = c.start; await new Promise(r => { v.onseeked = r; });
+  const fam = FAMILY[$('caption').value], blur = $('format').value === 'blur'; await document.fonts.load('72px ' + fam).catch(() => {});
+  const ac = new (window.AudioContext || window.webkitAudioContext)(), dest = ac.createMediaStreamDestination();
+  ac.createMediaElementSource(v).connect(dest);
+  const stream = cv.captureStream(30); dest.stream.getAudioTracks().forEach(t => stream.addTrack(t));
+  const mime = ['video/mp4;codecs=avc1.42E01E,mp4a.40.2', 'video/mp4', 'video/webm;codecs=vp9,opus', 'video/webm'].find(m => MediaRecorder.isTypeSupported(m));
+  if (!mime) throw new Error('This browser cannot record video. Use Chrome or Edge.');
+  const rec = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: 6e6, audioBitsPerSecond: 128e3 }), chunks = [];
+  rec.ondataavailable = e => e.data.size && chunks.push(e.data);
+  const dur = c.end - c.start;
+  const frame = () => {
+    const vw = v.videoWidth, vh = v.videoHeight, t = v.currentTime - c.start;
+    g.fillStyle = '#000'; g.fillRect(0, 0, W, H);
+    if (blur) {
+      const s = Math.max(54 / vw, 96 / vh); sg.drawImage(v, (54 - vw * s) / 2, (96 - vh * s) / 2, vw * s, vh * s);
+      g.imageSmoothingEnabled = true; g.drawImage(sm, 0, 0, W, H); g.fillStyle = 'rgba(0,0,0,.3)'; g.fillRect(0, 0, W, H);
+      const f = Math.min(W / vw, H / vh); g.drawImage(v, (W - vw * f) / 2, (H - vh * f) / 2, vw * f, vh * f);
+    } else { const s = Math.max(W / vw, H / vh); g.drawImage(v, (W - vw * s) / 2, (H - vh * s) / 2, vw * s, vh * s); }
+    const l = lines.find(x => t >= x.start && t <= x.end + .15);
+    if (l) {
+      g.font = '84px ' + fam; g.textAlign = 'center'; g.textBaseline = 'middle'; g.lineJoin = 'round'; g.lineWidth = 14; g.strokeStyle = '#000'; g.fillStyle = '#fff';
+      let parts = [l.text]; if (g.measureText(l.text).width > 960) { const w = l.text.split(' '), h = Math.ceil(w.length / 2); parts = [w.slice(0, h).join(' '), w.slice(h).join(' ')]; }
+      parts.forEach((p, i) => { const y = H * .72 + (i - (parts.length - 1) / 2) * 100; g.strokeText(p, W / 2, y); g.fillText(p, W / 2, y); });
     }
-    const dur = Math.max(1, c.end - c.start), output = 'short_' + c.id + '.mp4'; temp.push(output);
-    let vf = $('format').value === 'blur'
-      ? 'split=2[bg][fg];[bg]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,boxblur=25:2[blur];[fg]scale=1080:1920:force_original_aspect_ratio=decrease[front];[blur][front]overlay=(W-w)/2:(H-h)/2,setsar=1'
-      : 'scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,setsar=1';
-    if (wantCaps) {
-      status('Adding captions…', 40);
-      const res = await fetch(FONTS[$('caption').value]); if (!res.ok) throw new Error('Could not download the caption font.');
-      ffmpeg.FS('writeFile', 'cap.ttf', new Uint8Array(await res.arrayBuffer())); temp.push('cap.ttf');
-      const lines = captionLines(words, dur);
-      if (!lines.length) throw new Error('No speech found in this clip. Turn captions off to export it anyway.');
-      lines.forEach((l, i) => {
-        const t = 'cap_' + i + '.txt'; ffmpeg.FS('writeFile', t, new TextEncoder().encode(l.text)); temp.push(t);
-        vf += `,drawtext=fontfile=/cap.ttf:textfile=/${t}:x=(w-text_w)/2:y=h*0.72:fontsize=72:fontcolor=white:borderw=6:bordercolor=black:shadowx=2:shadowy=3:enable='between(t\\,${l.start.toFixed(2)}\\,${l.end.toFixed(2)})'`;
-      });
-    }
-    status('Rendering Short ' + c.id + '… this can take a few minutes.', 55);
-    await ffmpeg.run('-ss', String(c.start), '-i', srcName, '-t', String(dur), '-vf', vf, '-r', '30', '-c:v', 'libx264', '-preset', 'ultrafast', '-crf', '25', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', output);
-    const blob = new Blob([ffmpeg.FS('readFile', output).buffer], { type: 'video/mp4' });
-    addOutput(c, blob, makeMeta(words, c.id));
-    status('Short ' + c.id + ' is ready in “Ready to post”.', 100, 'ok');
-  } catch (e) {
-    console.error(e);
-    if (/abort|memory|OOM/i.test(String(e?.message || e))) { engineReady = false; srcName = null; engState('engineState', 'Stopped (likely out of memory). Reload the page and use a shorter source.'); }
-    status('Export failed: ' + (e.message || 'unknown error'), 0, 'err');
-  } finally { for (const n of temp) { try { ffmpeg.FS('unlink', n); } catch {} } busy = false; lock(false); btn.textContent = 'Export Short'; }
-}
-
-/* ---------- Ready-to-post cards ---------- */
-function addOutput(c, blob, meta) {
-  const box = $('exports'); if (box.querySelector('p.sub')) box.innerHTML = '';
-  const url = URL.createObjectURL(blob), card = document.createElement('div'); card.className = 'exp';
-  card.innerHTML = `<video controls playsinline preload="metadata"></video>
-   <label class="f">Title<input type="text" maxlength="100" class="t"></label>
-   <label class="f">Description and hashtags<textarea class="d"></textarea></label>
-   <label class="f">Privacy<select class="p"><option value="private">Private</option><option value="unlisted">Unlisted</option><option value="public">Public</option></select></label>
-   <div class="btns"><button class="ghost dl">Download MP4</button><button class="go up">Upload to YouTube</button></div>
-   <div class="msg" hidden></div>`;
-  card.querySelector('video').src = url; card.querySelector('.t').value = meta.title; card.querySelector('.d').value = meta.desc;
-  const msg = card.querySelector('.msg');
-  card.querySelector('.dl').onclick = () => { const a = document.createElement('a'); a.href = url; a.download = 'short_' + c.id + '.mp4'; a.click(); };
-  card.querySelector('.up').onclick = async e => {
-    const b = e.target; b.disabled = true; msg.hidden = false; setMsg(msg, 'Connecting to YouTube…');
-    try {
-      const d = card.querySelector('.d').value, tags = [...d.matchAll(/#(\w+)/g)].map(m => m[1]).slice(0, 15);
-      const id = await uploadYT(blob, { title: card.querySelector('.t').value.slice(0, 100), description: d, tags }, card.querySelector('.p').value, p => setMsg(msg, 'Uploading… ' + p + '%'));
-      msg.innerHTML = ''; const a = document.createElement('a'); a.href = 'https://youtube.com/shorts/' + id; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'Uploaded ✓ Open on YouTube'; msg.append(a); msg.className = 'msg ok';
-    } catch (err) { setMsg(msg, err.message || 'Upload failed.', 'err'); b.disabled = false; }
+    onProg(Math.min(1, Math.max(0, t / dur)));
   };
-  box.prepend(card);
-}
-
-/* ---------- YouTube upload (browser OAuth, no server) ---------- */
-async function getToken() {
-  if (token && Date.now() < tokenExp) return token;
-  const cid = store.get('cf_cid');
-  if (!cid) { openSettings(); throw new Error('Add your Google OAuth Client ID first, then try again.'); }
-  if (!window.google?.accounts) await loadScript(['https://accounts.google.com/gsi/client']);
   return new Promise((ok, no) => {
-    google.accounts.oauth2.initTokenClient({ client_id: cid, scope: 'https://www.googleapis.com/auth/youtube.upload',
-      callback: r => { if (r.error) return no(new Error('Google sign-in failed: ' + r.error)); token = r.access_token; tokenExp = Date.now() + (r.expires_in - 60) * 1000; ok(token); },
-      error_callback: e => no(new Error('Sign-in was closed or blocked (' + (e.type || 'error') + ').')) }).requestAccessToken();
-  });
-}
-async function uploadYT(blob, meta, privacy, onProg) {
-  const tk = await getToken();
-  const init = await fetch('https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status', {
-    method: 'POST', headers: { Authorization: 'Bearer ' + tk, 'Content-Type': 'application/json; charset=UTF-8', 'X-Upload-Content-Type': 'video/mp4', 'X-Upload-Content-Length': String(blob.size) },
-    body: JSON.stringify({ snippet: { ...meta, categoryId: '22' }, status: { privacyStatus: privacy, selfDeclaredMadeForKids: false } }) });
-  if (!init.ok) throw new Error('YouTube refused the upload (' + init.status + '). Check API access, quota and test-user setup.');
-  const loc = init.headers.get('Location'); if (!loc) throw new Error('YouTube did not return an upload address.');
-  return new Promise((ok, no) => {
-    const x = new XMLHttpRequest(); x.open('PUT', loc); x.setRequestHeader('Content-Type', 'video/mp4');
-    x.upload.onprogress = e => e.lengthComputable && onProg(Math.round(e.loaded / e.total * 100));
-    x.onload = () => { try { const j = JSON.parse(x.responseText); x.status < 300 && j.id ? ok(j.id) : no(new Error('Upload failed (' + x.status + ').')); } catch { no(new Error('Upload failed.')); } };
-    x.onerror = () => no(new Error('Network error during upload.')); x.send(blob);
+    let done = false;
+    const finish = () => { if (done) return; done = true; clearInterval(tm); v.pause(); rec.onstop = () => { ac.close(); ok({ blob: new Blob(chunks, { type: mime.split(';')[0] }), ext: mime.startsWith('video/mp4') ? 'mp4' : 'webm' }); }; rec.state !== 'inactive' ? rec.stop() : rec.onstop(); };
+    const tm = setInterval(() => { if (cancel) { done = true; clearInterval(tm); v.pause(); rec.state !== 'inactive' && rec.stop(); ac.close(); return no(new Error('Export stopped.')); } frame(); if (v.currentTime >= c.end - .05 || v.ended) finish(); }, 33);
+    rec.start(1000); ac.resume().then(() => v.play()).catch(e => { clearInterval(tm); no(new Error('Playback was blocked: ' + e.message)); });
   });
 }
 
-/* ---------- Settings ---------- */
-function openSettings() { $('origin').textContent = location.origin; $('cid').value = store.get('cf_cid'); $('set').showModal(); }
-$('openSet').onclick = openSettings; $('closeSet').onclick = () => $('set').close();
-$('saveSet').onclick = () => { store.set('cf_cid', $('cid').value.trim()); token = null; $('set').close(); };
+/* ---------- Export + ready-to-post card ---------- */
+const lock = off => document.querySelectorAll('button.export').forEach(b => b.disabled = off);
+async function exportClip(c, btn, out) {
+  if (busy) return;
+  busy = true; cancel = false; lock(true); $('stop').disabled = false; btn.textContent = 'Working…';
+  try {
+    const wantCaps = $('captions').checked; let words = [];
+    status('Preparing…', 3);
+    if (wantCaps || aiReady) { await loadAI(); words = await makeTranscript(c); }
+    if (wantCaps && !words.length) throw new Error('No speech found in this clip. Turn captions off to export it anyway.');
+    const dur = Math.round(c.end - c.start);
+    status(`Recording your Short in real time (${dur}s). Keep this tab open and visible.`, 0);
+    const { blob, ext } = await renderShort(c, wantCaps ? captionLines(words) : [], p => $('progress').style.width = (p * 100) + '%');
+    showOutput(out, c, blob, ext, makeMeta(words, c.id));
+    status('Short ' + c.id + ' is ready right below its moment.', 100, 'ok');
+    out.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } catch (e) { console.error(e); status(e.message || 'Export failed.', 0, 'err'); }
+  finally { busy = false; lock(false); $('stop').disabled = true; btn.textContent = 'Export Short'; }
+}
+
+function copy(text, btn) {
+  const done = () => { const o = btn.textContent; btn.textContent = 'Copied ✓'; setTimeout(() => btn.textContent = o, 1400); };
+  navigator.clipboard?.writeText(text).then(done).catch(() => fallback()) ?? fallback();
+  function fallback() { const t = document.createElement('textarea'); t.value = text; document.body.append(t); t.select(); try { document.execCommand('copy'); done(); } catch {} t.remove(); }
+}
+function showOutput(out, c, blob, ext, meta) {
+  const url = URL.createObjectURL(blob);
+  out.innerHTML = `<video controls playsinline></video><div class="fields">
+   <div class="lab">Title<button class="ghost sm" data-c="t">Copy</button></div><input type="text" class="t" maxlength="100">
+   <div class="lab">Description<button class="ghost sm" data-c="d">Copy</button></div><textarea class="d"></textarea>
+   <div class="lab">Hashtags<button class="ghost sm" data-c="h">Copy</button></div><input type="text" class="h">
+   <div class="btns" style="margin-top:14px"><button class="go all">Copy everything</button><button class="ghost dl">Download video (.${ext})</button></div></div>`;
+  const q = s => out.querySelector(s); q('video').src = url; q('.t').value = meta.title; q('.d').value = meta.desc; q('.h').value = meta.tags;
+  const val = k => ({ t: q('.t').value, d: q('.d').value, h: q('.h').value })[k];
+  out.querySelectorAll('[data-c]').forEach(b => b.onclick = () => copy(val(b.dataset.c), b));
+  q('.all').onclick = e => copy(val('t') + '\n\n' + val('d') + '\n\n' + val('h'), e.target);
+  q('.dl').onclick = () => { const a = document.createElement('a'); a.href = url; a.download = 'short_' + c.id + '.' + ext; a.click(); };
+  out.classList.add('show');
+}
 </script>
 </body>
 </html>
